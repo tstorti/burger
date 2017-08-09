@@ -2,6 +2,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require('method-override');
+var exphbs = require("express-handlebars");
+var router = require("./controllers/burgers_controller.js")
 
 // Create an instance of the express app.
 var app = express();
@@ -19,12 +21,8 @@ var port = 3000;
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Routes
-app.get("/", function(req, res) {
-
-});
-
-
+//router
+router.index(app);
 
 // Initiate the listener.
 app.listen(port);

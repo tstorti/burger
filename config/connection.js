@@ -12,7 +12,7 @@ var connection = {
         user: "root",
 
         // Your password
-        password: "enter password",
+        password: "",
         database: "burgers_db"
     })
 };

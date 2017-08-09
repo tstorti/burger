@@ -21,16 +21,19 @@ var orm = {
         var query = "SELECT * FROM burgers";
         connection.query(query, function(err, res) {
             console.log(res);
+            return(res);
         }); 
     },
     insertOne: function(newBurger){
         var query = "INSERT INTO burgers(burger_name) values (?)";
         connection.query(query, [newBurger], function(err, res) {
+            return("burger has been added");
         }); 
     },
-    updateOne: function(burgerID){
-        var query = "UPDATE burgers SET devoured = true WHERE id = ?";
-        connection.query(query, [burgerID], function(err, res) {
+    updateOne: function(burgerName){
+        var query = "UPDATE burgers SET devoured = true WHERE burger_name = ?";
+        connection.query(query, [burgerName], function(err, res) {
+            return("burger has been eaten");
         }); 
     },
 }
