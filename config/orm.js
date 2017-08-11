@@ -17,24 +17,37 @@ connection.connect(function(err) {
 });
 
 var orm = {
+    //returns all of the burgers in the database
     selectAll: function(){
-        var query = "SELECT * FROM burgers";
-        connection.query(query, function(err, res) {
-            console.log(res);
-            return(res);
+        return new Promise(
+        function (resolve, reject) {
+            var query = "SELECT * FROM burgers";
+            connection.query(query, function(err, res) {
+                resolve(res);
+            });
         }); 
     },
+
+    //adds a new burger to the database
     insertOne: function(newBurger){
-        var query = "INSERT INTO burgers(burger_name) values (?)";
-        connection.query(query, [newBurger], function(err, res) {
-            return("burger has been added");
-        }); 
+        return new Promise(
+        function (resolve, reject) {
+            var query = "INSERT INTO burgers(burger_name) values (?)";
+            connection.query(query, [newBurger], function(err, res) {
+                resolve(res);
+            });
+        });
     },
-    updateOne: function(burgerName){
-        var query = "UPDATE burgers SET devoured = true WHERE burger_name = ?";
-        connection.query(query, [burgerName], function(err, res) {
-            return("burger has been eaten");
-        }); 
+
+    //changes the devoured status of a burger matching a passed ID
+    updateOne: function(burgerID){
+        return new Promise(
+        function(resolve, reject){
+            var query = "UPDATE burgers SET devoured = true WHERE id = ?";
+            connection.query(query, [burgerID], function(err, res) {
+                resolve(res);
+            }); 
+        });        
     },
 }
 

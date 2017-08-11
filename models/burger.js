@@ -6,15 +6,34 @@
 
 var orm = require("../config/orm.js");
 
+
 var burger = {
+    //calls the orm to run SQL script to add a new burger to the database
     newBurger: function(burgerName){
-        orm.insertOne(burgerName);
+        return new Promise(
+        function (resolve, reject) { 
+            orm.insertOne(burgerName).then(function(result){
+                   resolve(result);
+            });
+        });
     },
-    devourBurger: function(burgerName){
-        orm.updateOne(burgerName);
+    //calls orm to run SQL script to change devoured status for a burger
+    devourBurger: function(burgerID){
+        return new Promise(
+        function(resolve, reject){
+            orm.updateOne(burgerID).then(function(result){
+                resolve(result);
+            });
+        });
     },
+    //calls orm to run SQL script to grab all burgers
     allBurgers:function(){
-        return(orm.selectAll());
+        return new Promise(
+        function (resolve, reject) { 
+            orm.selectAll().then(function(result){
+                resolve(result);
+            });
+        });
     }
 }
 
