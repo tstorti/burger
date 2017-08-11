@@ -8,13 +8,8 @@
 
 //    * Export the ORM object in `module.exports`.
 
-var connection = require("./connection.js").local;
+var connection = require("./connection.js");
 var mysql = require("mysql");
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id "+connection.threadId);
-});
 
 var orm = {
     //returns all of the burgers in the database
