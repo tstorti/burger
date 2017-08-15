@@ -19,7 +19,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(__dirname + '/'));
 
 // Specify the port.
-var port = 3000;
+var PORT = process.env.PORT || 8080;
 
 //always shows main layout, route will determine what gets rendered inside of {{{body}}}
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
