@@ -2,7 +2,7 @@
 //changes devoured status of selected burger
 $(document).on("click", ".js-eat-burger", function(){
 
-    //TODO - run a post call to change burger to "devoured" in database, update display
+    //run a post call to change burger to "devoured" in database, update display
     var currentURL = window.location.origin;
     var burgerID = {"id": $(this).attr("data-id")};
 

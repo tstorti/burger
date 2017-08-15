@@ -17,6 +17,9 @@ var router = {
                 res.render("index", {
                     "burgers": result,
                 });
+            //if error with burger promise
+            }).catch(function(error) {
+                console.log("Failed!", error);
             });
         });
     },
@@ -26,6 +29,9 @@ var router = {
         app.post("/add",function(req,res){
             burger.newBurger(req.body.name).then(function(result){
                 res.send({result: 'redirect', url:'/'});
+            //if error with burger promise
+            }).catch(function(error) {
+                console.log("Failed!", error);
             });
         });
     },
@@ -33,6 +39,9 @@ var router = {
         app.post("/devour",function(req,res){
             burger.devourBurger(req.body.id).then(function(result){
                 res.send({result: 'redirect', url:'/'});
+            //if error with burger promise
+            }).catch(function(error) {
+                console.log("Failed!", error);
             });
         });
     }

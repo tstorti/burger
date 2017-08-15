@@ -18,7 +18,12 @@ var orm = {
         function (resolve, reject) {
             var query = "SELECT * FROM burgers";
             connection.query(query, function(err, res) {
+                if (err) {
+                    reject(err);
+                }
                 resolve(res);
+
+
             });
         }); 
     },
@@ -29,6 +34,9 @@ var orm = {
         function (resolve, reject) {
             var query = "INSERT INTO burgers(burger_name) values (?)";
             connection.query(query, [newBurger], function(err, res) {
+                if (err) {
+                    reject(err);
+                }
                 resolve(res);
             });
         });
@@ -40,6 +48,9 @@ var orm = {
         function(resolve, reject){
             var query = "UPDATE burgers SET devoured = true WHERE id = ?";
             connection.query(query, [burgerID], function(err, res) {
+                if (err) {
+                    reject(err);
+                }
                 resolve(res);
             }); 
         });        
