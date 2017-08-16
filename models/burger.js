@@ -11,7 +11,7 @@ var burger = {
     newBurger: function(burgerName){
         return new Promise(
         function (resolve, reject) { 
-            orm.insertOne(burgerName).then(function(result){
+            orm.insertOne("burgers", "burger_name", burgerName).then(function(result){
                 resolve(result);
             //if error with orm promise
             }).catch(function(error) {
@@ -23,7 +23,7 @@ var burger = {
     devourBurger: function(burgerID){
         return new Promise(
         function(resolve, reject){
-            orm.updateOne(burgerID).then(function(result){
+            orm.updateOne("burgers", "devoured", true, burgerID).then(function(result){
                 resolve(result);
             //if error with orm promise
             }).catch(function(error) {
@@ -35,7 +35,7 @@ var burger = {
     allBurgers:function(){
         return new Promise(
         function (resolve, reject) { 
-            orm.selectAll().then(function(result){
+            orm.selectAll("burgers").then(function(result){
                 resolve(result);
             //if error with orm promise
             }).catch(function(error) {

@@ -13,11 +13,11 @@ var mysql = require("mysql");
 
 var orm = {
     //returns all of the burgers in the database
-    selectAll: function(){
+    selectAll: function(tableName){
         return new Promise(
         function (resolve, reject) {
-            var query = "SELECT * FROM burgers";
-            connection.query(query, function(err, res) {
+            var query = "SELECT * FROM ??";
+            connection.query(query, [tableName], function(err, res) {
                 if (err) {
                     reject(err);
                 }
@@ -29,11 +29,11 @@ var orm = {
     },
 
     //adds a new burger to the database
-    insertOne: function(newBurger){
+    insertOne: function(tableName, colName, itemName){
         return new Promise(
         function (resolve, reject) {
-            var query = "INSERT INTO burgers(burger_name) values (?)";
-            connection.query(query, [newBurger], function(err, res) {
+            var query = "INSERT INTO ?? (??) values (?)";
+            connection.query(query, [tableName, colName, itemName], function(err, res) {
                 if (err) {
                     reject(err);
                 }
@@ -43,11 +43,11 @@ var orm = {
     },
 
     //changes the devoured status of a burger matching a passed ID
-    updateOne: function(burgerID){
+    updateOne: function(tableName, colName, newVal, itemID){
         return new Promise(
         function(resolve, reject){
-            var query = "UPDATE burgers SET devoured = true WHERE id = ?";
-            connection.query(query, [burgerID], function(err, res) {
+            var query = "UPDATE ?? SET ?? = ? WHERE id = ?";
+            connection.query(query, [tableName, colName, newVal, itemID], function(err, res) {
                 if (err) {
                     reject(err);
                 }
